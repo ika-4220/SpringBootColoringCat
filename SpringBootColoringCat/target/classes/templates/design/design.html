@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layout/layout}">
+<head layout:fragment="head">
+	<link rel="stylesheet" th:href="@{/css/design/design.css}">
+<title>デザイン</title>
+</head>
+<body>
+	<div layout:fragment="content">
+
+		  <!-- 上部：線画サムネイル -->
+		  <div class="thumbnail-container">
+			<div th:each="thumb : ${thumbnails}">
+				<img class="thumbnail"
+					 th:src="@{${thumb.line}}"
+					 th:data-src="@{${thumb.line}}"
+					 th:data-mask="@{${thumb.mask}}"
+					 width="100" height="100">
+			</div>
+
+		    <canvas class="thumbnail" width="100" height="100" data-id="1"></canvas>
+		    <canvas class="thumbnail" width="100" height="100" data-id="2"></canvas>
+		    <canvas class="thumbnail" width="100" height="100" data-id="3"></canvas>
+		  </div>
+
+		  <!-- 下部：メインキャンバス -->
+		  <div class="canvas-wrapper">
+			<!--塗りキャンバス-->
+			<canvas id="paint-canvas" width="400" height="400"></canvas>
+			<!--線画キャンバス-->
+		  	<canvas id="line-canvas" width="400" height="400"></canvas>
+		  </div>
+		  		
+		  <!-- 色パレット -->
+		  <div class="palette">
+		    <div class="color" data-color="#ff0000"></div>
+		    <div class="color" data-color="#0000ff"></div>
+		    <div class="color" data-color="#00aa00"></div>
+		    <div class="color" data-color="#ffff00"></div>
+		    <div class="color" data-color="#000000"></div>
+		    <div class="color" data-color="#ffffff"></div>
+		  </div>
+		  
+		  <br>
+		  <input type="submit" value="保存" class="btn btn-primary" id="save-btn"/>
+		  <input type="submit" value="ダウンロード" class="btn btn-primary" id="dl-btn"/>
+		  <input type="submit" value="読込" class="btn btn-primary" id="load-btn"/>
+
+		  <script th:src="@{/js/design.js}"></script>
+
+	</div>
+</body>
+</html>

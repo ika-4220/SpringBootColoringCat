@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layout/layout}">
+<head layout:fragment="head">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!--CSS読込-->
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+<link rel="stylesheet" th:href="@{/css/signup/signup.css}"/>
+<!--JS読込-->
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" defer></script>
+<script th:src="@{/webjars/bootstrap/4.5.3/js/bootstrap.bundle.min.js}" defer></script>
+<title th:text="#{user.signup.title}"></title>
+</head>
+<body class="bg-light">
+		<div layout:fragment="content">
+			<form id="signup-form" method="post" action="/user/signup" class="form-signup" th:object="${signupForm}">
+				
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+				
+				<h1 class="text-center" th:text="#{user.signup.title}"></h1>
+				<!--ユーザーID-->
+				<div class="form-group">
+					<label for="userId" th:text="#{userId}"></label>
+					<input type="text" class="form-control" th:field="*{userId}" />
+				</div>
+				<!--パスワード-->
+				<div class="form-group">
+					<label for="password" th:text="#{password}"></label>
+					<input type="text" class="form-control" th:field="*{password}"/>
+				</div>
+				<!--登録ボタン-->
+				<input type="submit" th:value="#{user.signup.btn}" class="btn btn-primary w-100 mt-3"/>
+			</form>
+		</div>
+</body>
+</html>

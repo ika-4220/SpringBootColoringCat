@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layout/layout}">
+<head>
+<title>HOME</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="text-center">
+			<form method="post" th:action="@{/home}" class="form-home">
+				<div class="title header">
+					<h1>Catアイコンデザイナー</h1>
+				</div>
+				<div class="title body">
+					<p>自分のオリジナルアイコンを作りましょう！<br>
+					    自分が作ったねこちゃんとあそびましょう！</p>
+				</div>
+				<img th:src="@{/images/cat.png}" alt="cat" >
+				<br>
+				<input type="submit" value="デザインする" class="btn btn-primary"/>
+				<br>
+				
+			</form>
+			<a class="lLink" th:href="@{/login}">既にデザインがある人はこちら</a>
+		</div>
+	</div>
+</body>
+</html>

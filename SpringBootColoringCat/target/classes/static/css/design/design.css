@@ -1,0 +1,45 @@
+@charset "UTF-8";
+.thumbnail-container {/*キャンバス全体の箱*/
+  display: flex;/*キャンバスを横方向に並べる*/
+  gap: 10px;/*キャンバス同士の隙間を空ける*/
+  margin-bottom: 20px;/*メインキャンバスとの間に余白を作る*/
+}
+
+.thumbnail {/*サムネイルキャンバス*/
+  border: 1px solid #ccc;/*キャンパスの枠線*/
+  cursor: pointer;/*サムネイル選択時のカーソル変化*/
+}
+
+.canvas-wrapper{/*メインキャンバス*/
+	border: 2px solid #333;/*メインキャンバスの枠線*/
+	position:relative;/*子要素(Canvas)を絶対配置するための基準点*/
+	width:400px;
+	height:400px;
+}
+#line-canvas,
+#paint-canvas{
+	position:absolute;/*2枚のキャンバスを親要素(canvas-wrapper)を基準に配置*/
+	top:0;/*親要素の左上からの縦方向の位置*/
+	left:0;/*親要素の左上からの横方向の位置*/
+}
+
+#paint-canvas{
+	z-index:0;/*塗りキャンバスを後ろへ*/
+}
+#line-canvas{
+	z-index:1;/*線画キャンバスを前へ*/
+	pointer-events:none;/*マウス操作無効*/
+}
+.palette {/*色パレット全体の箱*/
+  margin-top: 20px;/*メインキャンバスとの間に余白*/
+  display: flex;/*色要素を横方向に並べる*/
+  gap: 10px;/*色要素同士の隙間を空ける*/
+}
+
+.color {/*個別の色ボタン*/
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;/*角を丸くして丸ボタンにする*/
+  cursor: pointer;/*選択時のカーソル変化*/
+  border: 1px solid #aaa;/*枠線*/
+}
