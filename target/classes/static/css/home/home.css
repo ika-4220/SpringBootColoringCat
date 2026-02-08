@@ -1,0 +1,180 @@
+@charset "UTF-8";
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* 全体の中央寄せ */
+.home-container {
+  max-width: 480px;
+  margin: 120px auto 0;
+  padding: 0 20px;
+}
+
+/* タイトル */
+.main-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* 説明文 */
+.lead-text {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* 画像 */
+.hero-image {
+  width: 300px;
+  height: auto;
+  margin: 20px 0;
+}
+
+/* ボタン */
+.btn-primary-home {
+  background-color: #8EB8FF;
+  border: none;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.btn-primary-home:hover {
+  background-color: #6ea0ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* ログインリンク */
+.login-link {
+  display: inline-block;
+  margin-top: 25px;
+  color: #6ea0ff;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #8EB8FF;
+  color: white;
+  padding: 10px 20px;
+  position: fixed; /*画面上部に固定*/
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 40px;
+  margin-right: 10px;
+  cursor: pointer;/*サムネイル選択時のカーソル変化*/
+}
+
+.icon-name {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.lLink{
+	display:inline-block;
+	margin-top:20px;
+}
+/*
+.nav-menu ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu li {
+  margin-left: 20px;
+}
+
+.nav-menu a {
+  color: white;
+  text-decoration: none;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 1.5em;
+  background: none;
+  border: none;
+  color: white;
+}*/
+
+/*@media (max-width: 768px) {*/
+/*オーバーレイ(最初は非表示)*/
+  .overlay{
+	position:fixed;
+	top: 0;
+	left: 0;
+	width:100%;
+	height:100%;
+	background:rgba(0,0,0,0.5);/*半透明の黒*/
+	opacity:0;
+	visibility:hidden;
+	transition:opacity 0.3s ease;
+	z-index:900;/*メニューより下、ヘッダーより上*/
+  }
+  /*表示状態*/
+  .overlay.active{
+	opacity:1;
+	visibility:visible;
+  }
+  .nav-menu {
+    position: absolute;
+    top: 60px;
+    left: 0px;
+	width:200px;
+	height:100vh;
+    background-color: #8EB8FF;
+    /*border-radius: 0 5px 5px 0;*/
+	transform: translateX(-100%); /*左に隠す*/
+	transition: transform 0.3s ease;/*アニメーション*/
+	z-index:1000;/*オーバーレイより上*/
+  }
+
+  .nav-menu ul {
+    flex-direction: column;
+  }
+
+  .nav-menu li {
+    margin: 10px 0;
+  }
+
+  .nav-menu a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-menu.active {
+	transform: translateX(0);/*左からスライドイン*/
+  }
+/*}*/

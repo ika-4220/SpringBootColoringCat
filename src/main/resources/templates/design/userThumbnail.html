@@ -1,0 +1,18 @@
+<div th:fragment="userThumbnails">
+    <div class="thumbnail-container">
+        <div th:each="p : ${userPaintings}" class="thumb-wrapper">
+            <button class="delete-btn" th:data-id="${p.id}">×</button>
+
+            <img class="thumb-line"
+                 th:src="${thumbnails[p.lineId - 1].line}"
+                 width="100" height="100">
+
+            <img class="thumb-paint"
+                 th:src="${p.thumbnailData}"
+                 th:data-paint="${p.imageData}"
+                 th:data-lineid="${p.lineId}"
+                 th:data-id="${p.id}"
+                 width="100" height="100">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+com\example\demo\service\UserService.class
+com\example\demo\service\impl\UserServiceImpl.class
+com\example\demo\SpringBootColoringCatApplication.class
+com\example\demo\user\model\MUser.class
+com\example\demo\controller\DesignController.class
+com\example\demo\entity\ColoringData.class
+com\example\demo\config\SecurityConfig.class
+com\example\demo\controller\HomeController.class
+com\example\demo\form\SignupForm.class
+com\example\demo\repository\ColoringRepository.class
+com\example\demo\controller\SignupController.class
+com\example\demo\service\impl\UserDetailsServiceImpl.class
+com\example\demo\config\JavaConfig.class
+com\example\demo\mapper\UserMapper.class
+com\example\demo\controller\LoginController.class

@@ -1,0 +1,210 @@
+@charset "UTF-8";
+/* 全体のフォントと余白 */
+body {
+    font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+    background: #fdfdfd;
+    color: #444;
+}
+
+.thumbnail-container {/*キャンバス全体の箱*/
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 100px);
+  gap: 10px;/*キャンバス同士の隙間を空ける*/
+  margin-bottom: 20px;/*メインキャンバスとの間に余白を作る*/
+  /*display: flex;*/
+}
+
+.thumbnail,
+.thumb-line,
+.thumb-paint {/*サムネイルキャンバス*/
+  /*border: 1px solid #ccc;/*キャンパスの枠線*/
+  cursor: pointer;/*サムネイル選択時のカーソル変化*/
+  border-radius: 10px;
+  border: 2px solid #eee;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.thumbnail:hover,
+.thumb-paint:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.thumb-wrapper {
+    position: relative;
+    width: 100px;
+    height: 100px;
+
+}
+
+.thumb-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+}
+
+.thumb-line {
+    z-index: 1; /* サムネイルの線画を上に */
+	pointer-events: none; /*クリックを無効化*/
+}
+
+.thumb-paint {
+    z-index: 0; /* サムネイルの塗り絵を下に */
+	/*border: 1px solid #ccc;/*キャンパスの枠線*/
+	/*cursor: pointer;/*サムネイル選択時のカーソル変化*/
+}
+
+.canvas-wrapper{/*メインキャンバス*/
+	/*order-radius: 12px;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+	/*border: 2px solid #333;/*メインキャンバスの枠線*/
+	/*position:relative;/*子要素(Canvas)を絶対配置するための基準点*/
+/*	width:400px;
+	height:400px;*/
+	/*background: #fff;*/
+	gap: 20px;
+	display: flex;
+	align-items: flex-start;
+}
+.canvas-area{
+		border-radius: 12px;
+		box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+		/*border: 2px solid #333;/*メインキャンバスの枠線*/
+		position:relative;/*子要素(Canvas)を絶対配置するための基準点*/
+/*		width:400px;
+		height:400px;*/
+		width: 90vw;   /* 画面幅の90% */
+		max-width: 400px;
+		aspect-ratio: 1 / 1; /* 正方形を維持 */
+		background: #fff;
+}
+
+/* ツールボックス（右側） */
+.toolbox {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#line-canvas,
+#paint-canvas{
+	position:absolute;/*2枚のキャンバスを親要素(canvas-wrapper)を基準に配置*/
+	top:0;/*親要素の左上からの縦方向の位置*/
+	left:0;/*親要素の左上からの横方向の位置*/
+}
+
+#paint-canvas{
+	z-index:0;/*塗りキャンバスを後ろへ*/
+}
+#line-canvas{
+	z-index:1;/*線画キャンバスを前へ*/
+	pointer-events:none;/*マウス操作無効*/
+}
+.palette {/*色パレット全体の箱*/
+  margin-top: 20px;/*メインキャンバスとの間に余白*/
+  display: flex;/*色要素を横方向に並べる*/
+  gap: 10px;/*色要素同士の隙間を空ける*/
+}
+.Dpalette{
+	/*margin: 15px 0;*/
+	display: flex;
+	margin: 15px 0;
+	font-size: 0.95rem;
+
+}
+.color {/*個別の色ボタン*/
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;/*角を丸くして丸ボタンにする*/
+  cursor: pointer;/*選択時のカーソル変化*/
+  /*border: 1px solid #aaa;/*枠線*/
+  border: 2px solid #ddd;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.btn-group{
+	margin-bottom:30px;
+	margin-right:20px;
+}
+
+/* ペンサイズスライダー */
+.pen-size-wrapper {
+    margin: 15px 0;
+    gap: 10px;
+}
+
+#pen-size {
+    width: 200px;
+}
+
+.btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 0.95rem;
+    transition: background 0.2s, transform 0.2s;
+	background-color: #8EB8FF;
+}
+.thumb-wrapper.selected {
+    outline: 3px solid #4A90E2;
+    border-radius: 10px;
+}
+
+.delete-btn {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    font-size: 14px;
+    cursor: pointer;
+    display: none; /* 初期は非表示 */
+    z-index: 10;
+}
+
+.thumb-wrapper.selected .delete-btn {
+    display: block;
+}
+#cursor-circle {
+    position: absolute;
+    pointer-events: none; /* クリックを邪魔しない */
+    border-radius: 50%;
+    border: 1px solid #333;
+    transform: translate(-50%, -50%); /* 中心に合わせる */
+    display: none; /* 初期は非表示 */
+    z-index: 10;
+}
+
+/* タブレット（〜1024px） */
+@media (max-width: 1024px) {
+  .thumbnail-container {
+    grid-template-columns: repeat(auto-fill, 90px);
+    gap: 8px;
+  }
+}
+
+/* スマホ（〜600px） */
+@media (max-width: 600px) {
+  .thumbnail-container {
+    grid-template-columns: repeat(auto-fill, 80px);
+    gap: 6px;
+  }
+
+  .thumb-wrapper {
+    width: 80px;
+    height: 80px;
+  }
+
+  .thumb-wrapper img {
+    width: 80px;
+    height: 80px;
+  }
+}
+

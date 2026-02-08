@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layout/layout}">
+<head layout:fragment="head">
+	<link rel="stylesheet" th:href="@{/css/design/design.css}">
+<title>デザイン</title>
+<!--CSRFトークン設定-->
+<meta name="_csrf" th:content="${_csrf.token}">
+<meta name="_csrf_header" th:content="${_csrf.headerName}">
+</head>
+<body>
+	<div layout:fragment="content">
+
+		<!--ログイン時のみ　保存済み塗り絵サムネイル-->
+		<div th:if="${#authorization.expression('isAuthenticated()')}"><!--現在のユーザーが認証済みの場合-->
+			<p th:text="${#authentication.name} + 'さんの作成アイコン'"></p>
+			<div id="user-thumbnails-area"
+				 th:insert="design/userThumbnail :: userThumbnails"></div>
+
+		</div>
+		  <p>線画 ※サムネイルクリックで塗り絵ができます</p>
+		  <!-- 上部：線画サムネイル -->
+		  <div class="thumbnail-container">
+			<div th:each="thumb : ${thumbnails}"  class="thumb-wrapper">
+				<img class="thumbnail"
+					 th:src="${thumb.line}"
+					 th:data-src="${thumb.line}"
+					 th:data-mask="${thumb.mask}"
+					 th:data-lineid="${thumb.lineid}"
+					 width="100" height="100">
+			</div>
+		  </div>
+
+		  <!-- 下部：メインキャンバス -->
+		  <div class="canvas-wrapper">
+			<div class="canvas-area">
+				<!--塗りキャンバス-->
+				<canvas id="paint-canvas"></canvas>
+				<!--線画キャンバス-->
+			  	<canvas id="line-canvas"></canvas>
+				<!-- カーソル表示用 -->
+				<div id="cursor-circle"></div>
+
+			</div>
+			<!--ツールボックス-->
+			<div class="toolbox">
+				<input type="button" value="消しゴム" class="btn btn-primary btn-group" id="eraser-btn"/>
+				<input type="button" value="ペンに戻す" class="btn btn-primary btn-group" id="pen-btn"/>
+			</div>
+		  </div>
+		  		
+		  <!-- 色パレット -->
+		  
+		  <div class="palette">
+			<p>基本カラー　　</p>
+		    <div class="color" data-color="#ff7f50"></div>
+		    <div class="color" data-color="#4682b4"></div>
+		    <div class="color" data-color="#8fbc8f"></div>
+			<div class="color" data-color="#f08080"></div>
+			<div class="color" data-color="#ffd700"></div>
+		    <div class="color" data-color="#fffacd"></div>
+			<div class="color" data-color="#8b4513"></div>
+		    <div class="color" data-color="#000000"></div>
+		    <div class="color" data-color="#808080"></div>
+		  </div>
+		  <div class="Dpalette">
+			  <p>カラーピッカー　</p>
+			  <input type="color" id="color-picker">
+		  </div>
+		  <div class="pen-size-wrapper">
+			<label for="pen-size">ペンの太さ</label>
+			<input type="range" id="pen-size" min="1" max="50" value="20">
+			<span id="pen-size-dispray">20</span> px
+		  </div>
+			  <input type="submit" value="保存" class="btn btn-primary btn-group" id="save-btn"/>
+			  <input type="submit" value="ダウンロード" class="btn btn-primary btn-group" id="dl-btn"/>
+			  <!--<input type="submit" value="読込" class="btn btn-primary" id="load-btn"/>-->
+			  <script th:src="@{/js/design.js}" defer></script>
+			  <!-- ログイン状態をJSに渡す -->
+			  <script th:inline="javascript">
+			      const isLoggedIn = /*[[${#authorization.expression('isAuthenticated()')}]]*/ false;
+			  </script>
+	</div>
+
+
+</body>
+</html>

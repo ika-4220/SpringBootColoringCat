@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<body>
+<header class="site-header" layout:fragment="header">
+	<div class="logo-container">
+		<img th:src="@{/images/logo.png}" alt="Catロゴ" class="logo">
+		<span class="icon-name">CatIcon</span>
+	</div>
+	
+	<nav class="nav-menu">
+		<ul>
+			<li><a th:href="@{/home}">ホーム</a></li>
+			<li><a th:href="@{/login}">ログイン</a></li>
+			<li><a th:href="@{/design}">デザイン</a></li>
+			<li><a th:href="@{/content}">Catと遊ぶ</a></li>
+		</ul>
+	</nav>
+	<!--オーバーレイ-->
+	<div class="overlay"></div>
+</header>
+
+</body>
+</html>
